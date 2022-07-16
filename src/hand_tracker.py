@@ -8,9 +8,6 @@ class HandTracker:
         self.mpDraw = mp.solutions.drawing_utils
         self.finger_x_coordinate = None
         self.finger_y_coordinate = None
-        img = cv2.imread("img/virus.png")
-        img = cv2.resize(img, (20, 20))
-        cv2.imwrite('img/virus.png', img)
 
     def tracking(self, img):
         results = self.hands.process(img)

@@ -1,4 +1,5 @@
 import pygame
+from pygame import mixer
 from typing import Final
 from cam import Cam
 import random
@@ -20,6 +21,8 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = None
         self.virus_image = pygame.image.load('img/virus.png')
+        mixer.init()
+        mixer.music.load('sounds/coin.mp3')
         self.virus_x_coord = None
         self.virus_y_coord = None
         self.collide = False
@@ -59,6 +62,7 @@ class Game:
         if self.virus_x_coord is not None and self.virus_y_coord is not None and self.cam.hand_tracker.finger_x_coordinate is not None and self.cam.hand_tracker.finger_y_coordinate is not None:
             if (math.isclose(self.cam.hand_tracker.finger_x_coordinate, self.virus_x_coord, abs_tol=50) and
                     math.isclose(self.cam.hand_tracker.finger_y_coordinate, self.virus_y_coord, abs_tol=50)):
+                mixer.music.play()
                 self.score = self.score + 1
                 self.collide = True
 
